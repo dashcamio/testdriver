@@ -131,6 +131,18 @@ runs:
           adopt_key "$API_KEY"
           IDENTITY=$(echo "$BODY" | jq -c '.identity // {}')
           echo "identity=$IDENTITY" >> "$GITHUB_OUTPUT"
+
+          # Export the OIDC-VERIFIED actor id for the test step that runs later.
+          # The runner already has GITHUB_ACTOR, but that's a renameable login
+          # the workflow can overwrite; actor_id came off GitHub's signature and
+          # is immutable. The SDK forwards it on the test run so per-GitHub-user
+          # billing can tell an attested identity from a self-asserted one.
+          # Only set on this path — the api-key fallback never sees a token.
+          ACTOR_ID=$(echo "$BODY" | jq -r '.identity.github.actorId // empty')
+          if [ -n "$ACTOR_ID" ]; then
+            echo "TD_GITHUB_ACTOR_ID=$ACTOR_ID" >> "$GITHUB_ENV"
+          fi
+
           echo "Resolved team identity:"
           echo "$BODY" | jq '.identity // "no identity in response"'
           echo "Authenticated to TestDriver via OIDC."
