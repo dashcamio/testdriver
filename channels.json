@@ -9,7 +9,7 @@
   },
   "canary": {
     "apiRoot": "https://api-canary.testdriver.ai",
-    "consoleUrl": "https://console-canary.testdriver.ai"
+    "consoleUrl": "https://console.testdriver.ai"
   },
   "stable": {
     "apiRoot": "https://api.testdriver.ai",

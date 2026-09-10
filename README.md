@@ -43,7 +43,7 @@ so the org → team binding exists:
 | Channel  | Console                                |
 | -------- | -------------------------------------- |
 | `stable` | https://console.testdriver.ai          |
-| `canary` | https://console-canary.testdriver.ai   |
+| `canary` | https://console.testdriver.ai          |
 | `test`   | https://console-test.testdriver.ai     |
 | `dev`    | https://console-dev.testdriver.ai      |
 
